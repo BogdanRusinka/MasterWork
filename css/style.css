@@ -1,0 +1,175 @@
+﻿*{
+	margin:0; padding: 0;
+}
+
+#wrapper {
+	width : 80%;
+	min-width: 700px;
+	max-width:1360px;
+	background: #ffffff;
+	margin:auto;
+	padding:10px;
+	box-shadow: 0 0 15px 5px rgba(0,0,0,0.4);
+	border-radius :  0 0 5px 5px;
+	margin-bottom: 15px;
+}
+
+
+.header {
+	width:100%;
+	background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#011 011), color-stop(100%,#657333));
+	height:200px;
+
+}
+
+.error {
+	color:red;
+}
+
+
+.formula_buttons{
+	padding : 4px;
+	width:30px;
+	height:30px;
+}
+
+.poryadok {
+background: rgb(206,220,231); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(206,220,231,1)), color-stop(100%,rgba(89,106,114,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 ); /* IE6-9 */
+
+border : 1px solid white;
+	padding: 0 3px;
+}
+
+
+.cf {
+	background: linear-gradient(to top, LightBlue, SkyBlue);
+padding: 0 3px;
+}
+
+
+.mf {
+	background: linear-gradient(to top, PowderBlue, LightBlue);
+	padding: 0 3px;
+}
+
+
+.mantissa {
+background: rgb(206,220,231); /* Old browsers */
+background: -moz-linear-gradient(top,  rgba(206,220,231,1) 0%, rgba(89,106,114,1) 100%); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(206,220,231,1)), color-stop(100%,rgba(89,106,114,1))); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* IE10+ */
+background: linear-gradient(to bottom,  rgba(206,220,231,1) 0%,rgba(89,106,114,1) 100%); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#cedce7', endColorstr='#596a72',GradientType=0 ); /* IE6-9 */
+color : white;
+border : 1px solid white;
+	padding: 0 3px;
+}
+
+
+
+.format {
+
+}
+
+.emptyfield {
+	color:red;
+}
+
+.sign {
+	background : LightBlue;
+padding: 0 3px;
+}
+
+.dash {
+	border-bottom: solid black 1px;
+}
+
+.table_formula tr td {
+	padding : 2px;
+}
+
+blockquote {
+  background: #eee;
+  border-left: 5px solid #71A2CF;
+  width : 700px;
+  margin : auto;
+  border-radius :  0 5px 5px 0px;
+  margin-bottom : 15px;
+}
+
+.table_formula.btn-primary {
+	padding-right: 2px;
+}
+
+.jumbotrone:after {
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: url(../image/bs-docs-masthead-pattern.png) repeat center center;
+  opacity: .6;
+}
+
+.jumbotrone {
+position: relative;
+padding: 40px 0;
+color: black;
+text-align: center;
+text-shadow: 0 1px 3px rgba(0,0,0,.5), 0 0 30px rgba(0,0,0,.075);
+}
+.jumbotrone h1 {
+	color:black;
+}
+
+.pbformat {
+font:ArialNarrow;
+border-radius: 20px;
+}
+
+.pbformat  td {
+    border: 1px solid DodgerBlue; /* Линия снизу */
+	padding: 2px;
+   }
+
+#mainform {
+	width : 680px;
+	padding : 30px;
+	background-color : rgba(200, 200,200,0.2);
+	border-radius : 15px;
+	box-shadow: 0px 0px 10px 1px #ccc; 
+	margin : 15px;
+	
+}
+header {
+background : #ccc;
+padding : 20px;
+background: -webkit-gradient(linear, left top, left bottom, from(#4cd4d4), to(#2a6da1));
+   background: -webkit-linear-gradient(top, #4cd4d4, #2a6da1);
+   background: -moz-linear-gradient(top, #4cd4d4, #2a6da1);
+   background: -ms-linear-gradient(top, #4cd4d4, #2a6da1);
+   background: -o-linear-gradient(top, #4cd4d4, #2a6da1);
+   background-image: -ms-linear-gradient(top, #4cd4d4 0%, #2a6da1 100%);
+   border-radius : 15px;
+   color : white;
+color:white; 
+font-weight:bold; 
+font-size:2em; 
+text-shadow:-1px -1px #666, 1px 1px DodgerBlue;
+
+
+}
+body {
+background-color : #43637C;
+}
