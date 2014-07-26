@@ -38,13 +38,13 @@ class parse
 			$this->Formula = substr_replace($this->Formula, "VAR".$i, $match[1]-$offs, strlen($match[0])); 
 			$offs = strlen($match[0]) - strlen("VAR".$i) + $offs;
 			$match = $this->makePatternExp($match[0]); 
-			$match = $this->ExpToNum($match[0]);
+			$match = $this->ExpToNum($match);
 			$connection = new MongoClient();
 			$db = $connection->Master;
 			$variables = $db->Variables;
 		//	if (!$mysqli->query("INSERT INTO `variables` (`variable`, `lpart`,`lpartreal`, `rpart`,`rpartreal`) VALUES ('VAR$i', '$match', '$real', '+1.0', '+1.0')"))
 			// echo "Trouble with DB ".$mysqli->errno;
-			$insert = array ("variable"=>'VAR'.$i,"lpart"=>$match[0],"lpartreal"=>$real,"rpart"=>"+1.0","rpartreal"=>"+1.0");
+			$insert = array ("variable"=>'VAR'.$i,"lpart"=>$match,"lpartreal"=>$real,"rpart"=>"+1.0","rpartreal"=>"+1.0");
 			$variables->insert($insert);
 			$i++;	
 		}
@@ -160,10 +160,11 @@ class parse
 			{
 				$brackets = $this->makePairsOfNum(substr($match[0],1,-1),$iterator);
 				$iterator = $brackets["N"]; unset($brackets["N"]);
-				$this->Stack["BR".$num] = array_pop($brackets);
+				
 				foreach ($brackets as $key=>$val)
 					$this->Stack[$key]=$val; 
 				$this->Formula = substr_replace($this->Formula, "BR".$num, strpos($this->Formula, $match[0]),strlen($match[0]));
+				$this->Stack["BR".$num] = array_pop($brackets);
 				$num++;
 				return $this->parseFormula($num, $iterator); 
 			} else 

@@ -240,7 +240,7 @@ echo "			  <div class='number' style='overflow: auto; white-space: nowrap'>
 			 $equation = $db->Formula;
 
 			 $formul = $equation->findOne();
-			echo "<h2>".$formul['eq']."</h2>"; die;
+			echo "<h2>".$formul['eq']."</h2>";
 			 echo "<div id='MathResults'><h3>РЕЗУЛЬТАТЫ ВЫЧИСЛЕНИЯ ФУНКЦИИ ".$formul['eq']."</h3>";	
 			// $result = $mysqli->query("SELECT * FROM `stack` ");
 			foreach ($st as $row)
