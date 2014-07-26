@@ -237,7 +237,11 @@ echo "			  <div class='number' style='overflow: auto; white-space: nowrap'>
 			 
 
 			 }*/
-			 echo "<div id='MathResults'><h3>РЕЗУЛЬТАТЫ ВЫЧИСЛЕНИЯ ФУНКЦИИ A+B</h3>";	
+			 $equation = $db->Formula;
+
+			 $formul = $equation->findOne();
+			echo "<h2>".$formul['eq']."</h2>"; die;
+			 echo "<div id='MathResults'><h3>РЕЗУЛЬТАТЫ ВЫЧИСЛЕНИЯ ФУНКЦИИ ".$formul['eq']."</h3>";	
 			// $result = $mysqli->query("SELECT * FROM `stack` ");
 			foreach ($st as $row)
 			 {
@@ -400,7 +404,7 @@ echo "<table class='table table-condensed table-bordered'>
 
 function ShowDecimalValues($mant,$por){
 $func = new math();
-echo "<br><b>Результат вычисления:</b><br>[ ";
+echo "<br>[ ";
 if (preg_match("/[MA]/",$mant, $match)){
 	$arr = Arr($mant);
 foreach ($arr as $key=>$el){

@@ -1,7 +1,8 @@
 ﻿<?php 
 include "class.parse.php";
-$str = "-FF+";
-echo $str[strpos($str,"-")-1];
+$str = "OP10*B*B";
+preg_match("/([A-Z]+[0-9]+?)([\*\/])([A-Z]+[0-9]?)/", $str, $match);
+echo $match[0];
 echo $_POST['equation'];
 if (isset($_POST["formula"]) && $_POST["formula"]!="")
 	{

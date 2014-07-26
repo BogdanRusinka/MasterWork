@@ -28,20 +28,23 @@ class parse
 	
 	public function  expFind() { //echo "hi";
 	//	require "db.php";
-		preg_match_all("/[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?/",$this->Formula, $matches);
+		preg_match_all("/([0-9]+)(\\.[0-9]+)?([eE][-+]?[0-9]+)?/",$this->Formula, $matches,PREG_OFFSET_CAPTURE);
 		$i=0;
+		//var_dump($matches[0]);
+		$offs = 0;
 		foreach ($matches[0] as $match)
-		{  
-			$real = $match;
-			$this->Formula = substr_replace($this->Formula, "VAR".$i, strpos($this->Formula, $match), strlen($match)); 
-			$match = $this->makePatternExp($match); 
-			$match = $this->ExpToNum($match);
+		{  	echo $match[0]."<br>";
+			$real = $match[0];
+			$this->Formula = substr_replace($this->Formula, "VAR".$i, $match[1]-$offs, strlen($match[0])); 
+			$offs = strlen($match[0]) - strlen("VAR".$i) + $offs;
+			$match = $this->makePatternExp($match[0]); 
+			$match = $this->ExpToNum($match[0]);
 			$connection = new MongoClient();
 			$db = $connection->Master;
 			$variables = $db->Variables;
 		//	if (!$mysqli->query("INSERT INTO `variables` (`variable`, `lpart`,`lpartreal`, `rpart`,`rpartreal`) VALUES ('VAR$i', '$match', '$real', '+1.0', '+1.0')"))
 			// echo "Trouble with DB ".$mysqli->errno;
-			$insert = array ("variable"=>'VAR'.$i,"lpart"=>$match,"lpartreal"=>$real,"rpart"=>"+1.0","rpartreal"=>"+1.0");
+			$insert = array ("variable"=>'VAR'.$i,"lpart"=>$match[0],"lpartreal"=>$real,"rpart"=>"+1.0","rpartreal"=>"+1.0");
 			$variables->insert($insert);
 			$i++;	
 		}
@@ -165,7 +168,7 @@ class parse
 				return $this->parseFormula($num, $iterator); 
 			} else 
 			{ 
-				$brackets = $this->makePairsOfNum($this->Formula,0);
+				$brackets = $this->makePairsOfNum($this->Formula,$iterator);
 				unset($brackets["N"]);
 				foreach ($brackets as $key=>$val)
 					$this->Stack[$key]=$val;
@@ -181,7 +184,7 @@ class parse
 		
 		private function makePairsOfNum($str, $num){
 			$stack = array(); //echo $str;
-			while (preg_match("/([A-Z]+[0-9]?)([\*\/])([A-Z]+[0-9]?)/", $str, $match)==1)
+			while (preg_match("/([A-Z]+)([0-9]+)?([\*\/])([A-Z]+[0-9]?)/", $str, $match)==1)
 			{ //echo "44";
 				$position = strpos($str, $match[0]);
 				$length = strlen($match[0]);
@@ -197,10 +200,11 @@ class parse
 				}
 				$stack["OP".$num] = $signleft.$match[0];
 				$str = substr_replace($str, "OP".$num, $position, $length);
+			//		echo "<h4>$str</h4>";
 				$num++;
 			}
-			while (preg_match("/([A-Z]+[0-9]?)([\+\-])([A-Z]+[0-9]?)/", $str, $match)==1)
-			{ //echo "44";
+			while ( preg_match("/([A-Z]+)([0-9]+)?([\+\-])([A-Z]+)([0-9]+)?/", $str, $match) == 1 )
+			{ echo "<br>".$match[0]."<br>";
 				$position = strpos($str, $match[0]);
 				$length = strlen($match[0]);
 				$signleft = "";
@@ -215,7 +219,9 @@ class parse
 				}
 				$stack["OP".$num] = $signleft.$match[0];
 				$str = substr_replace($str, "OP".$num, $position, $length);
+
 				$num++;
+				echo "<h4>$str</h4>";
 			}
 			$stack["N"] = $num;
 			return $stack;

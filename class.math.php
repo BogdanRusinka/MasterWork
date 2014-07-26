@@ -311,7 +311,7 @@ class math
 			$realoperation = strval($signl ^ $ops[1]["sign"] ^ $opcode);
 			$a = $this->Multiply($ops[0]["m1"],$ops[0]["p1"], $ops[1]["m2"],$ops[1]["p2"],$ops[0]["format"]);
 			$b = $this->Multiply($ops[0]["m2"],$ops[0]["p2"], $ops[1]["m1"],$ops[1]["p1"],$ops[0]["format"]);
-			$resultNom =  $this->Summarize($a["poryadok"],$a["mantissa"], $b["poryadok"],$b["mantissa"],$a["format"],$realoperation,$s ^ intval($ops[0]["sign"]));
+			$resultNom =  $this->Summarize($a["poryadok"],$a["mantissa"], $b["poryadok"],$b["mantissa"],$a["format"],$realoperation,$signl,intval($ops[1]["sign"]),$opcode);
 			$this->Tres="";
 			$resultDeNom = $this->Multiply($ops[0]["m2"],$ops[0]["p2"], $ops[1]["m2"],$ops[1]["p2"],$ops[0]["format"]);
 			return array(0=>$resultNom,1=>$resultDeNom,2=>$resultNom["sign"]);
@@ -328,7 +328,7 @@ class math
 		return array( 0 => $m, 1 => $rb, 2 => $decp );
 	}
 	
-	public function Summarize($p1,$m1,$p2,$m2,$format,$realoperation,$sA){
+	public function Summarize($p1,$m1,$p2,$m2,$format,$realoperation,$sA,$sB,$opcode){
 	echo $sA;
 	//echo $m1."<br>"; echo $m2;
 	require "vars.php";  //echo $realoperation;
@@ -391,7 +391,7 @@ class math
 	$sum = $this->TetraSub(); //if(strlen($sum)>$NumberMantissaLength[$format]+1) $sum = substr($sum,1);
 	}
 	
-	$realsign = !$eps & $sA | $eps & $realoperation; 
+	$realsign = !$eps & $sA | $eps & ($opcode ^ $sB ); 
 		if ($sum == "00000000000000000000000")
 		$sum[1]="1";
 	//echo $sum; 
